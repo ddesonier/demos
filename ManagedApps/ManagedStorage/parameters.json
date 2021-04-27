@@ -1,0 +1,42 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountNamePrefix": {
+            "value": {
+                "type": "String",
+                "value": "nomadapp"
+            }
+        },
+        "storageAccountType": {
+            "value": {
+                "type": "String",
+                "value": "Standard_LRS"
+            }
+        },
+        "location": {
+            "value": {
+                "type": "String",
+                "value": "eastus"
+            }
+        },
+        "applicationResourceName": {
+            "value": {
+                "type": "String",
+                "value": "storageaccountapp"
+            }
+        },
+        "managedResourceGroupId": {
+            "value": {
+                "type": "String",
+                "value": "/subscriptions/7c27312f-200e-47f6-a855-c308a26f1493/resourceGroups/mrg-ManagedStorage-20210414140634"
+            }
+        },
+        "managedIdentity": {
+            "value": {
+                "type": "Object",
+                "value": {}
+            }
+        }
+    }
+}

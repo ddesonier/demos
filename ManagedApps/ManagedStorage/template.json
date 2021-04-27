@@ -1,0 +1,56 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountNamePrefix": {
+            "type": "String"
+        },
+        "storageAccountType": {
+            "type": "String"
+        },
+        "location": {
+            "defaultValue": "[resourceGroup().location]",
+            "type": "String"
+        },
+        "applicationResourceName": {
+            "defaultValue": "ManagedStorage6485f89f2d5947a0a624c6396e704aab",
+            "type": "String"
+        },
+        "managedResourceGroupId": {
+            "defaultValue": "",
+            "type": "String"
+        },
+        "managedIdentity": {
+            "defaultValue": {},
+            "type": "Object"
+        }
+    },
+    "variables": {
+        "managedResourceGroupId": "[if(empty(parameters('managedResourceGroupId')),concat(subscription().id,'/resourceGroups/',take(concat(resourceGroup().name,'-',uniquestring(resourceGroup().id),uniquestring(parameters('applicationResourceName'))),90)),parameters('managedResourceGroupId'))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Solutions/applications",
+            "apiVersion": "2017-09-01",
+            "name": "[parameters('applicationResourceName')]",
+            "location": "[resourceGroup().Location]",
+            "kind": "ServiceCatalog",
+            "identity": "[if(empty(parameters('managedIdentity')),json('null'),parameters('managedIdentity'))]",
+            "properties": {
+                "managedResourceGroupId": "[variables('managedResourceGroupId')]",
+                "applicationDefinitionId": "/subscriptions/7c27312f-200e-47f6-a855-c308a26f1493/resourceGroups/appDefinitionGroup/providers/Microsoft.Solutions/applicationDefinitions/ManagedStorage",
+                "parameters": {
+                    "storageAccountNamePrefix": {
+                        "value": "[parameters('storageAccountNamePrefix')]"
+                    },
+                    "storageAccountType": {
+                        "value": "[parameters('storageAccountType')]"
+                    },
+                    "location": {
+                        "value": "[parameters('location')]"
+                    }
+                }
+            }
+        }
+    ]
+}
