@@ -1,0 +1,12 @@
+#aks_service_principal_app_id = $(env:ARM_CLIENT_ID)
+
+#aks_service_principal_client_secret = $(env:ARM_CLIENT_SECRET)
+
+#aks_service_principal_object_id = $(env:ARM_OBJECT_ID)
+
+
+aks_service_principal_app_id = "aa482c4e-8104-406a-b484-14753f941790"
+
+aks_service_principal_client_secret = "4Ze8Q~rnaVyccxjLHTZXwbApLAdqjKDls-D~baZV"
+
+aks_service_principal_object_id = "5aaae3ec-8917-44c6-b76a-52dab7fadc97"
